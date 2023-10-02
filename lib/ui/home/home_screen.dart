@@ -1,4 +1,5 @@
 import 'package:fantastico_app/ui/home/home_brand_list.dart';
+import 'package:fantastico_app/ui/home/home_week_comic_list.dart';
 import 'package:fantastico_app/utils/assets_helper.dart';
 import 'package:flutter/material.dart';
 
@@ -27,6 +28,12 @@ class HomeScreen extends StatelessWidget {
             child: ListView(
               children: const [
                 HomeBrandList(),
+                SizedBox(
+                  height: 16,
+                ),
+                HomeWeekComicList(),
+                HomeWeekComicList(),
+                HomeWeekComicList(),
               ],
             ),
           ),
