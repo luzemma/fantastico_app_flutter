@@ -8,6 +8,8 @@ environment:
 
 dependencies:
   bloc: ^8.1.2
+  fantastico_api_client:
+    path: packages/fantastico_api_client
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.3
