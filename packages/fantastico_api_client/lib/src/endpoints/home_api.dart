@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fantastico_api_client/fantastico_api_client.dart';
 import 'package:fantastico_api_client/src/exceptions/custom_api_error.dart';
-import 'package:fantastico_api_client/src/models/dto_week_by_home.dart';
 import 'package:fantastico_api_client/src/repositories/secure_repository.dart';
 
 class HomeApi {
