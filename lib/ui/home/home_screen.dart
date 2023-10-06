@@ -9,35 +9,37 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
-    return ColoredBox(
-      color: Colors.white,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              Image.asset(
-                AssetHelper.avengersCover,
-                height: 200,
-                width: size.width,
-                fit: BoxFit.cover,
-              ),
-            ],
-          ),
-          Expanded(
-            child: ListView(
-              children: const [
-                HomeBrandList(),
-                SizedBox(
-                  height: 16,
+    return SafeArea(
+      child: ColoredBox(
+        color: Colors.white,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                Image.asset(
+                  AssetHelper.avengersCover,
+                  height: 200,
+                  width: size.width,
+                  fit: BoxFit.cover,
                 ),
-                HomeWeekComicList(),
-                HomeWeekComicList(),
-                HomeWeekComicList(),
               ],
             ),
-          ),
-        ],
+            Expanded(
+              child: ListView(
+                children: const [
+                  HomeBrandList(),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  HomeWeekComicList(),
+                  HomeWeekComicList(),
+                  HomeWeekComicList(),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
