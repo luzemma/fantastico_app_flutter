@@ -1,0 +1,24 @@
+import 'package:dio/dio.dart';
+import 'package:fantastico_api_client/src/repositories/secure_repository_interface.dart';
+
+class AuthInterceptor extends Interceptor {
+  AuthInterceptor({required ISecureRepository secureRepository})
+      : _secureRepository = secureRepository;
+
+  final ISecureRepository _secureRepository;
+
+  @override
+  Future<void> onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
+    if (options.headers.containsKey('requiresAuth')) {
+      options.headers.remove('requiresAuth');
+      final token = await _secureRepository.jwt;
+      if (token != null && token != '') {
+        options.headers['x-jwt-token'] = token;
+      }
+    }
+    return handler.next(options);
+  }
+}
