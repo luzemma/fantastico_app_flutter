@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:fantastico_api_client/src/interceptors/auth_interceptor.dart';
 import 'package:fantastico_api_client/src/interceptors/logging_interceptor.dart';
-import 'package:fantastico_api_client/src/repositories/secure_repository_interface.dart';
+import 'package:fantastico_api_client/src/repositories/jwt_repository_interface.dart';
 
 class FantasticoApiClient {
   FantasticoApiClient({
-    required ISecureRepository secureRepo,
+    required IJwtRepository jwtRepository,
     Dio? diocClient,
     String? baseUrl,
   })  : _dio = diocClient ?? Dio(),
@@ -19,12 +19,12 @@ class FantasticoApiClient {
       ..interceptors.add(LoggingInterceptor())
       ..interceptors.add(
         AuthInterceptor(
-          secureRepository: secureRepo,
+          jwtRepository: jwtRepository,
         ),
       );
   }
 
-  static const _urlDev = 'https://stg.fantasticocomic.com/';
+  static const _urlDev = 'https://api.stg.fantasticocomic.com';
 
   final Dio _dio;
   final String _baseUrl;

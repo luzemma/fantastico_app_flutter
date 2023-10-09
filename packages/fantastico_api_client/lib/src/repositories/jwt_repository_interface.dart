@@ -1,4 +1,4 @@
-abstract class ISecureRepository {
+abstract class IJwtRepository {
   Future<String?> get jwt;
 
   Future<void> saveJwt(String value);

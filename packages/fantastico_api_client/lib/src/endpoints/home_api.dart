@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:fantastico_api_client/fantastico_api_client.dart';
 import 'package:fantastico_api_client/src/exceptions/custom_api_error.dart';
-import 'package:fantastico_api_client/src/repositories/secure_repository.dart';
+import 'package:fantastico_api_client/src/repositories/jwt_repository.dart';
 
 class HomeApi {
   HomeApi({FantasticoApiClient? apiClient})
       : _apiClient = apiClient ??
             FantasticoApiClient(
-              secureRepo: SecureRepository(),
+              jwtRepository: JwtRepository(),
             );
 
   final FantasticoApiClient _apiClient;

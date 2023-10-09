@@ -1,7 +1,7 @@
-import 'package:fantastico_api_client/src/repositories/secure_repository_interface.dart';
+import 'package:fantastico_api_client/src/repositories/jwt_repository_interface.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class SecureRepository implements ISecureRepository {
+class JwtRepository implements IJwtRepository {
   static const _keyJwt = 'keyJwt';
 
   final _storage = const FlutterSecureStorage();
