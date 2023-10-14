@@ -2,6 +2,7 @@ import 'package:fantastico_app/ui/app/widgets/scaffold_with_nav_bar.dart';
 import 'package:fantastico_app/ui/home/home_screen.dart';
 import 'package:fantastico_app/ui/scanner/scanner_screen.dart';
 import 'package:fantastico_app/ui/search/search_screen.dart';
+import 'package:fantastico_app/ui/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,8 +11,14 @@ final GlobalKey<NavigatorState> _rootNavigatorKey =
 
 final appRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
-  initialLocation: '/home',
+  initialLocation: '/splash',
   routes: <RouteBase>[
+    GoRoute(
+      path: '/splash',
+      builder: (BuildContext context, GoRouterState state) {
+        return const SplashProvider();
+      },
+    ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
         return ScaffoldWithNavBar(
