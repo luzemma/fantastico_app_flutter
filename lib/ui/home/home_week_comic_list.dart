@@ -18,10 +18,25 @@ class HomeWeekComicList extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-            child: Text(week.weekDescription),
-          ),
-          const SizedBox(
-            height: 8,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  week.weekDescription,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                Text(
+                  'Ver más',
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Colors.blue.shade600,
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.blue.shade600,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ],
+            ),
           ),
           if (week.weekProducts != null)
             Expanded(
