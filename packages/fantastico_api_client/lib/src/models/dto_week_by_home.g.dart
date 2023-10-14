@@ -8,7 +8,7 @@ part of 'dto_week_by_home.dart';
 
 DtoWeekByHome _$DtoWeekByHomeFromJson(Map<String, dynamic> json) =>
     DtoWeekByHome(
-      weekNumber: json['semanaNum'] as int,
+      weekNumber: json['semanaNum'] as String,
       weekDescription: json['semanaDescripcion'] as String,
       weekProducts: (json['semana'] as List<dynamic>?)
           ?.map((e) => DtoProductByWeek.fromJson(e as Map<String, dynamic>))

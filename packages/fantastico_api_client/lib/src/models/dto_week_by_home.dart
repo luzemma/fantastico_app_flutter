@@ -14,7 +14,7 @@ class DtoWeekByHome {
   });
 
   @JsonKey(name: 'semanaNum')
-  final int weekNumber;
+  final String weekNumber;
   @JsonKey(name: 'semanaDescripcion')
   final String weekDescription;
   @JsonKey(name: 'semana', includeIfNull: false)

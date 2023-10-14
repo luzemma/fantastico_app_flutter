@@ -23,7 +23,7 @@ final appRouter = GoRouter(
           routes: <RouteBase>[
             GoRoute(
               path: '/home',
-              builder: (context, state) => const HomeScreen(),
+              builder: (context, state) => const HomeProvider(),
             ),
           ],
         ),

@@ -1,74 +1,51 @@
+import 'package:fantastico_app/models/week_by_home.dart';
 import 'package:flutter/material.dart';
 
 class HomeWeekComicList extends StatelessWidget {
-  const HomeWeekComicList({super.key});
+  const HomeWeekComicList({
+    required this.week,
+    super.key,
+  });
+
+  final WeekByHome week;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 200,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-              child: Text('Semana 1'),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
+      height: 200,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            child: Text(week.weekDescription),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          if (week.weekProducts != null)
             Expanded(
-              child: ListView(
+              child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                children: [
-                  Container(
+                itemCount: week.weekProducts!.length,
+                itemBuilder: (context, index) {
+                  final product = week.weekProducts![index];
+                  return Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                     height: 200,
                     child: Image.network(
-                      'https://im.fantasticocomic.com/im/b/5d/0e00422bb9453398496a77bd6cabe.jpg',
+                      product.productImage,
                       width: 120,
                       height: 200,
                       fit: BoxFit.contain,
                     ),
-                  ),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                    height: 200,
-                    child: Image.network(
-                      'https://im.fantasticocomic.com/im/d/bb/30d48f18ef385109d74c456bf73c5.jpg',
-                      width: 120,
-                      height: 200,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                    height: 200,
-                    child: Image.network(
-                      'https://im.fantasticocomic.com/im/9/b2/bac0bf74ff852c4bbfb9d3ed8427c.jpg',
-                      width: 120,
-                      height: 200,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                    height: 200,
-                    child: Image.network(
-                      'https://im.fantasticocomic.com/im/0/01/fab52e306cd9599bb46abb8fc7060.jpg',
-                      width: 120,
-                      height: 200,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ],
+                  );
+                },
               ),
             ),
-          ],
-        ));
+        ],
+      ),
+    );
   }
 }

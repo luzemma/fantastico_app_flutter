@@ -25,8 +25,8 @@ class DtoProductByWeek {
   final String? productPrice;
   @JsonKey(name: 'imagen', includeIfNull: false)
   final String? productImage;
-  @JsonKey(name: 'cantArts', defaultValue: 0)
-  final int quantity;
+  @JsonKey(name: 'cantArts', includeIfNull: false)
+  final String? quantity;
 
   factory DtoProductByWeek.fromJson(Map<String, dynamic> json) =>
       _$DtoProductByWeekFromJson(json);

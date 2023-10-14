@@ -8,7 +8,7 @@ part of 'dto_product_by_week.dart';
 
 DtoProductByWeek _$DtoProductByWeekFromJson(Map<String, dynamic> json) =>
     DtoProductByWeek(
-      quantity: json['cantArts'] as int? ?? 0,
+      quantity: json['cantArts'] as String?,
       productId: json['artIdHash'] as String,
       productName: json['artDescripcion'] as String?,
       productLine: json['lineaDescripcion'] as String?,
@@ -31,6 +31,6 @@ Map<String, dynamic> _$DtoProductByWeekToJson(DtoProductByWeek instance) {
   writeNotNull('lineaDescripcion', instance.productLine);
   writeNotNull('precio', instance.productPrice);
   writeNotNull('imagen', instance.productImage);
-  val['cantArts'] = instance.quantity;
+  writeNotNull('cantArts', instance.quantity);
   return val;
 }
