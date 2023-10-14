@@ -9,6 +9,9 @@ enum AppTheme {
 final appThemeData = {
   AppTheme.light: ThemeData(
     useMaterial3: true,
+    colorScheme: ColorScheme.fromSwatch(
+      accentColor: ColorHelper.primaryBlue,
+    ),
     appBarTheme: AppBarTheme(
       color: ColorHelper.primaryBlue,
       titleTextStyle: const TextStyle(
@@ -21,6 +24,7 @@ final appThemeData = {
     iconTheme: IconThemeData(
       color: ColorHelper.primaryBlue,
     ),
+    scaffoldBackgroundColor: Colors.white,
     textTheme: ThemeData.light().textTheme.copyWith(
           displayLarge: const TextStyle(
             fontFamily: 'Montserrat',
