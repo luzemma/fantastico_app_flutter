@@ -19,21 +19,21 @@ class DtoWeekProduct {
   });
 
   @JsonKey(name: 'comics')
-  final List<DtoProduct> comics;
+  final List<DtoWeekProductItem> comics;
   @JsonKey(name: 'libros')
-  final List<DtoProduct> books;
+  final List<DtoWeekProductItem> books;
   @JsonKey(name: 'revistas')
-  final List<DtoProduct> magazines;
+  final List<DtoWeekProductItem> magazines;
   @JsonKey(name: 'figuras')
-  final List<DtoProduct> figures;
+  final List<DtoWeekProductItem> figures;
   @JsonKey(name: 'juegos')
-  final List<DtoProduct> games;
+  final List<DtoWeekProductItem> games;
   @JsonKey(name: 'tarjetas')
-  final List<DtoProduct> cards;
+  final List<DtoWeekProductItem> cards;
   @JsonKey(name: 'posters')
-  final List<DtoProduct> posters;
+  final List<DtoWeekProductItem> posters;
   @JsonKey(name: 'otros')
-  final List<DtoProduct> others;
+  final List<DtoWeekProductItem> others;
 
   factory DtoWeekProduct.fromJson(Map<String, dynamic> json) =>
       _$DtoWeekProductFromJson(json);

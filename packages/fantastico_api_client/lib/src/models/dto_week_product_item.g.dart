@@ -1,27 +1,32 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'dto_product.dart';
+part of 'dto_week_product_item.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-DtoProduct _$DtoProductFromJson(Map<String, dynamic> json) => DtoProduct(
+DtoWeekProductItem _$DtoWeekProductItemFromJson(Map<String, dynamic> json) =>
+    DtoWeekProductItem(
       id: json['artIdHash'] as String,
       isAvailableInVirtualShop: json['disponibleTV'] as bool? ?? false,
-      inWishlist: json['inWishlist'] as bool? ?? false,
+      inWishlist: json['inWishList'] as bool? ?? false,
       name: json['artDescripcion'] as String?,
-      line: json['lineaDescrip'] as String?,
-      brand: json['marcaDescrip'] as String?,
+      line: json['lineaDescription'] as String?,
+      brand: json['marcaDescripcion'] as String?,
       synopsis: json['sinopsis'] as String?,
       price: json['precio'] as String?,
       offerPrice: json['precioOferta'] as String?,
+      imageFileName: json['imagen'] as String?,
+      relatedProducts: (json['relacionados'] as List<dynamic>?)
+          ?.map((e) => DtoRelatedProduct.fromJson(e as Map<String, dynamic>))
+          .toList(),
       availabilityDetail: (json['detalleDisponibilidad'] as List<dynamic>?)
           ?.map((e) => DtoAvailability.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$DtoProductToJson(DtoProduct instance) {
+Map<String, dynamic> _$DtoWeekProductItemToJson(DtoWeekProductItem instance) {
   final val = <String, dynamic>{
     'artIdHash': instance.id,
   };
@@ -33,13 +38,15 @@ Map<String, dynamic> _$DtoProductToJson(DtoProduct instance) {
   }
 
   writeNotNull('artDescripcion', instance.name);
-  writeNotNull('lineaDescrip', instance.line);
-  writeNotNull('marcaDescrip', instance.brand);
+  writeNotNull('lineaDescription', instance.line);
+  writeNotNull('marcaDescripcion', instance.brand);
   writeNotNull('sinopsis', instance.synopsis);
   writeNotNull('precio', instance.price);
   writeNotNull('precioOferta', instance.offerPrice);
+  writeNotNull('imagen', instance.imageFileName);
   val['disponibleTV'] = instance.isAvailableInVirtualShop;
-  val['inWishlist'] = instance.inWishlist;
+  val['inWishList'] = instance.inWishlist;
+  writeNotNull('relacionados', instance.relatedProducts);
   writeNotNull('detalleDisponibilidad', instance.availabilityDetail);
   return val;
 }

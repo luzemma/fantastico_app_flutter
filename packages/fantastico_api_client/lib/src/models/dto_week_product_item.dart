@@ -2,11 +2,11 @@
 import 'package:fantastico_api_client/src/models/models.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'dto_product.g.dart';
+part 'dto_week_product_item.g.dart';
 
 @JsonSerializable()
-class DtoProduct {
-  DtoProduct({
+class DtoWeekProductItem {
+  DtoWeekProductItem({
     required this.id,
     required this.isAvailableInVirtualShop,
     required this.inWishlist,
@@ -16,6 +16,7 @@ class DtoProduct {
     this.synopsis,
     this.price,
     this.offerPrice,
+    this.imageFileName,
     this.relatedProducts,
     this.availabilityDetail,
   });
@@ -24,9 +25,9 @@ class DtoProduct {
   final String id;
   @JsonKey(name: 'artDescripcion', includeIfNull: false)
   final String? name;
-  @JsonKey(name: 'lineaDescrip', includeIfNull: false)
+  @JsonKey(name: 'lineaDescription', includeIfNull: false)
   final String? line;
-  @JsonKey(name: 'marcaDescrip', includeIfNull: false)
+  @JsonKey(name: 'marcaDescripcion', includeIfNull: false)
   final String? brand;
   @JsonKey(name: 'sinopsis', includeIfNull: false)
   final String? synopsis;
@@ -34,17 +35,19 @@ class DtoProduct {
   final String? price;
   @JsonKey(name: 'precioOferta', includeIfNull: false)
   final String? offerPrice;
+  @JsonKey(name: 'imagen', includeIfNull: false)
+  final String? imageFileName;
   @JsonKey(name: 'disponibleTV', defaultValue: false)
   final bool isAvailableInVirtualShop;
-  @JsonKey(name: 'inWishlist', defaultValue: false)
+  @JsonKey(name: 'inWishList', defaultValue: false)
   final bool inWishlist;
   @JsonKey(name: 'relacionados', includeIfNull: false)
   final List<DtoRelatedProduct>? relatedProducts;
   @JsonKey(name: 'detalleDisponibilidad', includeIfNull: false)
   final List<DtoAvailability>? availabilityDetail;
 
-  factory DtoProduct.fromJson(Map<String, dynamic> json) =>
-      _$DtoProductFromJson(json);
+  factory DtoWeekProductItem.fromJson(Map<String, dynamic> json) =>
+      _$DtoWeekProductItemFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DtoProductToJson(this);
+  Map<String, dynamic> toJson() => _$DtoWeekProductItemToJson(this);
 }

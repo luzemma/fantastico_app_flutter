@@ -3,8 +3,8 @@ import 'package:fantastico_api_client/fantastico_api_client.dart';
 import 'package:fantastico_api_client/src/exceptions/custom_api_error.dart';
 import 'package:fantastico_api_client/src/repositories/jwt_repository.dart';
 
-class ProductsApi {
-  ProductsApi({FantasticoApiClient? apiClient})
+class ProductApi {
+  ProductApi({FantasticoApiClient? apiClient})
       : _apiClient = apiClient ??
             FantasticoApiClient(
               jwtRepository: JwtRepository(),
@@ -26,7 +26,6 @@ class ProductsApi {
         ),
       );
       final data = response.data as Map<String, dynamic>;
-
       final week = DtoWeek.fromJson(data['data'] as Map<String, dynamic>);
       return week;
     } on DioException catch (e) {

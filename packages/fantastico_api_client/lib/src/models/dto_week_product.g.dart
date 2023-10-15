@@ -9,28 +9,28 @@ part of 'dto_week_product.dart';
 DtoWeekProduct _$DtoWeekProductFromJson(Map<String, dynamic> json) =>
     DtoWeekProduct(
       comics: (json['comics'] as List<dynamic>)
-          .map((e) => DtoProduct.fromJson(e as Map<String, dynamic>))
+          .map((e) => DtoWeekProductItem.fromJson(e as Map<String, dynamic>))
           .toList(),
       books: (json['libros'] as List<dynamic>)
-          .map((e) => DtoProduct.fromJson(e as Map<String, dynamic>))
+          .map((e) => DtoWeekProductItem.fromJson(e as Map<String, dynamic>))
           .toList(),
       magazines: (json['revistas'] as List<dynamic>)
-          .map((e) => DtoProduct.fromJson(e as Map<String, dynamic>))
+          .map((e) => DtoWeekProductItem.fromJson(e as Map<String, dynamic>))
           .toList(),
       figures: (json['figuras'] as List<dynamic>)
-          .map((e) => DtoProduct.fromJson(e as Map<String, dynamic>))
+          .map((e) => DtoWeekProductItem.fromJson(e as Map<String, dynamic>))
           .toList(),
       games: (json['juegos'] as List<dynamic>)
-          .map((e) => DtoProduct.fromJson(e as Map<String, dynamic>))
+          .map((e) => DtoWeekProductItem.fromJson(e as Map<String, dynamic>))
           .toList(),
       cards: (json['tarjetas'] as List<dynamic>)
-          .map((e) => DtoProduct.fromJson(e as Map<String, dynamic>))
+          .map((e) => DtoWeekProductItem.fromJson(e as Map<String, dynamic>))
           .toList(),
       posters: (json['posters'] as List<dynamic>)
-          .map((e) => DtoProduct.fromJson(e as Map<String, dynamic>))
+          .map((e) => DtoWeekProductItem.fromJson(e as Map<String, dynamic>))
           .toList(),
       others: (json['otros'] as List<dynamic>)
-          .map((e) => DtoProduct.fromJson(e as Map<String, dynamic>))
+          .map((e) => DtoWeekProductItem.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
