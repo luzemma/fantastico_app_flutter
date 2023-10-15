@@ -1,39 +1,39 @@
 import 'package:fantastico_app/repositories/product_repository.dart';
 import 'package:fantastico_app/services/service_locator.dart';
+import 'package:fantastico_app/ui/product_brand/cubit/product_brand_cubit.dart';
 import 'package:fantastico_app/ui/product_item/product_list_item.dart';
-import 'package:fantastico_app/ui/product_week/cubit/product_week_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProductWeekProvider extends StatelessWidget {
-  const ProductWeekProvider({
-    required this.weekNumber,
+class ProductBrandProvider extends StatelessWidget {
+  const ProductBrandProvider({
+    required this.brandId,
     required this.description,
     super.key,
   });
 
-  final int weekNumber;
+  final int brandId;
   final String description;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProductWeekCubit(
+      create: (context) => ProductBrandCubit(
         productRepo: ServiceLocator.getIt<ProductRepository>(),
-        weekNumber: weekNumber,
+        brandId: brandId,
         title: description,
       )..onInitial(),
-      child: const ProductWeekScreen(),
+      child: const ProductBrandScreen(),
     );
   }
 }
 
-class ProductWeekScreen extends StatelessWidget {
-  const ProductWeekScreen({super.key});
+class ProductBrandScreen extends StatelessWidget {
+  const ProductBrandScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProductWeekCubit, ProductWeekState>(
+    return BlocBuilder<ProductBrandCubit, ProductBrandState>(
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(

@@ -1,5 +1,6 @@
 import 'package:fantastico_app/ui/app/widgets/scaffold_with_nav_bar.dart';
 import 'package:fantastico_app/ui/home/home_screen.dart';
+import 'package:fantastico_app/ui/product_brand/product_brand_screen.dart';
 import 'package:fantastico_app/ui/product_week/product_week_screen.dart';
 import 'package:fantastico_app/ui/scanner/scanner_screen.dart';
 import 'package:fantastico_app/ui/search/search_screen.dart';
@@ -42,6 +43,19 @@ final appRouter = GoRouter(
                         int.parse(state.uri.queryParameters['number'] ?? '0');
                     return ProductWeekProvider(
                       weekNumber: weekNumber,
+                      description: name,
+                    );
+                  },
+                ),
+                GoRoute(
+                  path: 'brand',
+                  builder: (BuildContext context, GoRouterState state) {
+                    final name =
+                        state.uri.queryParameters['name'] ?? 'Sin marca';
+                    final brandId =
+                        int.parse(state.uri.queryParameters['brand_id'] ?? '0');
+                    return ProductBrandProvider(
+                      brandId: brandId,
                       description: name,
                     );
                   },

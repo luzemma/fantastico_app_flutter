@@ -15,6 +15,7 @@ class HomeState extends Equatable {
   List<Object?> get props => [
         status,
         weeks,
+        error,
       ];
 
   HomeState copyWith({

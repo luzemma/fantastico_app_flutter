@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fantastico_app/models/enums/cubit_status.dart';
-import 'package:fantastico_app/models/home_week.dart';
+import 'package:fantastico_app/models/models.dart';
 import 'package:fantastico_app/repositories/home_repository.dart';
 
 part 'home_state.dart';

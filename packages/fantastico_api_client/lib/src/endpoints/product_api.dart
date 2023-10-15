@@ -32,4 +32,23 @@ class ProductApi {
       throw CustomApiError.fromDioError(e);
     }
   }
+
+  Future<DtoWeek> getProductsByBrandId(int brandId) async {
+    try {
+      final path = '$_endpoint/pormarca/$brandId';
+      final response = await _apiClient.get(
+        path,
+        options: Options(
+          headers: {
+            'requiresAuth': true,
+          },
+        ),
+      );
+      final data = response.data as Map<String, dynamic>;
+      final week = DtoWeek.fromJson(data['data'] as Map<String, dynamic>);
+      return week;
+    } on DioException catch (e) {
+      throw CustomApiError.fromDioError(e);
+    }
+  }
 }
