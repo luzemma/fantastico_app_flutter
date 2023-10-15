@@ -1,5 +1,5 @@
-class ProductByWeek {
-  ProductByWeek({
+class HomeWeekProduct {
+  HomeWeekProduct({
     required this.quantity,
     required this.productId,
     required this.productImage,

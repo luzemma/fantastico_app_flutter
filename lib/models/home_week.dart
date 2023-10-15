@@ -1,7 +1,7 @@
-import 'package:fantastico_app/models/product_by_week.dart';
+import 'package:fantastico_app/models/home_week_product.dart';
 
-class WeekByHome {
-  WeekByHome({
+class HomeWeek {
+  HomeWeek({
     required this.weekNumber,
     required this.weekDescription,
     this.weekProducts,
@@ -9,5 +9,5 @@ class WeekByHome {
 
   final int weekNumber;
   final String weekDescription;
-  final List<ProductByWeek>? weekProducts;
+  final List<HomeWeekProduct>? weekProducts;
 }

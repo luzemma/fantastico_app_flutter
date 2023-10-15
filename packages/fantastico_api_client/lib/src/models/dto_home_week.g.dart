@@ -1,21 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'dto_week_by_home.dart';
+part of 'dto_home_week.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-DtoWeekByHome _$DtoWeekByHomeFromJson(Map<String, dynamic> json) =>
-    DtoWeekByHome(
+DtoHomeWeek _$DtoHomeWeekFromJson(Map<String, dynamic> json) => DtoHomeWeek(
       weekNumber: json['semanaNum'] as String,
       weekDescription: json['semanaDescripcion'] as String,
       weekProducts: (json['semana'] as List<dynamic>?)
-          ?.map((e) => DtoProductByWeek.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => DtoHomeWeekProduct.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$DtoWeekByHomeToJson(DtoWeekByHome instance) {
+Map<String, dynamic> _$DtoHomeWeekToJson(DtoHomeWeek instance) {
   final val = <String, dynamic>{
     'semanaNum': instance.weekNumber,
     'semanaDescripcion': instance.weekDescription,

@@ -4,9 +4,12 @@ import 'package:fantastico_app/models/models.dart';
 import 'package:fantastico_app/utils/image_helper.dart';
 import 'package:fantastico_app/utils/string_extension.dart';
 
-ProductByWeek? dtoToProductByWeek(DtoProductByWeek? dto, String baseImageUrl) {
+HomeWeekProduct? dtoToHomeWeekProduct(
+  DtoHomeWeekProduct? dto,
+  String baseImageUrl,
+) {
   if (dto != null) {
-    return ProductByWeek(
+    return HomeWeekProduct(
       quantity: dto.quantity?.toInteger() ?? 0,
       productId: dto.productId,
       productName: dto.productName,
@@ -19,14 +22,14 @@ ProductByWeek? dtoToProductByWeek(DtoProductByWeek? dto, String baseImageUrl) {
   return null;
 }
 
-WeekByHome? dtoToWeekByHome(DtoWeekByHome? dto, String baseImageUrl) {
+HomeWeek? dtoToHomeWeek(DtoHomeWeek? dto, String baseImageUrl) {
   if (dto != null) {
-    return WeekByHome(
+    return HomeWeek(
       weekNumber: dto.weekNumber.toInteger() ?? 0,
       weekDescription: dto.weekDescription,
       weekProducts: dto.weekProducts != null
           ? dto.weekProducts!
-              .map((e) => dtoToProductByWeek(e, baseImageUrl))
+              .map((e) => dtoToHomeWeekProduct(e, baseImageUrl))
               .whereNotNull()
               .toList()
           : null,

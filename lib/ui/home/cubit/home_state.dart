@@ -8,7 +8,7 @@ class HomeState extends Equatable {
   });
 
   final CubitStatus status;
-  final List<WeekByHome>? weeks;
+  final List<HomeWeek>? weeks;
   final String? error;
 
   @override
@@ -19,7 +19,7 @@ class HomeState extends Equatable {
 
   HomeState copyWith({
     CubitStatus? status,
-    List<WeekByHome>? weeks,
+    List<HomeWeek>? weeks,
     String? error,
   }) {
     return HomeState(

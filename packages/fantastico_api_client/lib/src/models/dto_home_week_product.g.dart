@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'dto_product_by_week.dart';
+part of 'dto_home_week_product.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-DtoProductByWeek _$DtoProductByWeekFromJson(Map<String, dynamic> json) =>
-    DtoProductByWeek(
+DtoHomeWeekProduct _$DtoHomeWeekProductFromJson(Map<String, dynamic> json) =>
+    DtoHomeWeekProduct(
       quantity: json['cantArts'] as String?,
       productId: json['artIdHash'] as String,
       productName: json['artDescripcion'] as String?,
@@ -16,7 +16,7 @@ DtoProductByWeek _$DtoProductByWeekFromJson(Map<String, dynamic> json) =>
       productImage: json['imagen'] as String?,
     );
 
-Map<String, dynamic> _$DtoProductByWeekToJson(DtoProductByWeek instance) {
+Map<String, dynamic> _$DtoHomeWeekProductToJson(DtoHomeWeekProduct instance) {
   final val = <String, dynamic>{
     'artIdHash': instance.productId,
   };

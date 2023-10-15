@@ -2,11 +2,11 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
-part 'dto_product_by_week.g.dart';
+part 'dto_home_week_product.g.dart';
 
 @JsonSerializable()
-class DtoProductByWeek {
-  DtoProductByWeek({
+class DtoHomeWeekProduct {
+  DtoHomeWeekProduct({
     required this.quantity,
     required this.productId,
     this.productName,
@@ -28,8 +28,8 @@ class DtoProductByWeek {
   @JsonKey(name: 'cantArts', includeIfNull: false)
   final String? quantity;
 
-  factory DtoProductByWeek.fromJson(Map<String, dynamic> json) =>
-      _$DtoProductByWeekFromJson(json);
+  factory DtoHomeWeekProduct.fromJson(Map<String, dynamic> json) =>
+      _$DtoHomeWeekProductFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DtoProductByWeekToJson(this);
+  Map<String, dynamic> toJson() => _$DtoHomeWeekProductToJson(this);
 }

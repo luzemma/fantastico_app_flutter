@@ -45,6 +45,9 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(
+                  height: 16,
+                ),
                 const HomeBrandList(),
                 const SizedBox(
                   height: 16,

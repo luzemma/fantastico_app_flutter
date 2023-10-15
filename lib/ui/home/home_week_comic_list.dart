@@ -1,4 +1,4 @@
-import 'package:fantastico_app/models/week_by_home.dart';
+import 'package:fantastico_app/models/home_week.dart';
 import 'package:flutter/material.dart';
 
 class HomeWeekComicList extends StatelessWidget {
@@ -7,7 +7,7 @@ class HomeWeekComicList extends StatelessWidget {
     super.key,
   });
 
-  final WeekByHome week;
+  final HomeWeek week;
 
   @override
   Widget build(BuildContext context) {
