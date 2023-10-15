@@ -1,5 +1,6 @@
 import 'package:fantastico_app/ui/app/widgets/scaffold_with_nav_bar.dart';
 import 'package:fantastico_app/ui/home/home_screen.dart';
+import 'package:fantastico_app/ui/product_week/product_week_screen.dart';
 import 'package:fantastico_app/ui/scanner/scanner_screen.dart';
 import 'package:fantastico_app/ui/search/search_screen.dart';
 import 'package:fantastico_app/ui/splash/splash_screen.dart';
@@ -31,6 +32,21 @@ final appRouter = GoRouter(
             GoRoute(
               path: '/home',
               builder: (context, state) => const HomeProvider(),
+              routes: <RouteBase>[
+                GoRoute(
+                  path: 'week',
+                  builder: (BuildContext context, GoRouterState state) {
+                    final name =
+                        state.uri.queryParameters['name'] ?? 'Esta semana';
+                    final weekNumber =
+                        int.parse(state.uri.queryParameters['number'] ?? '0');
+                    return ProductWeekProvider(
+                      weekNumber: weekNumber,
+                      description: name,
+                    );
+                  },
+                ),
+              ],
             ),
           ],
         ),

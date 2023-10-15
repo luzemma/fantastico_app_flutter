@@ -1,4 +1,4 @@
-import 'package:fantastico_app/models/home_week_product.dart';
+import 'package:fantastico_app/models/models.dart';
 
 class HomeWeek {
   HomeWeek({

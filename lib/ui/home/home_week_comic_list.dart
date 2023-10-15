@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 class HomeWeekComicList extends StatelessWidget {
   const HomeWeekComicList({
     required this.week,
+    this.viewMoreOnPressed,
     super.key,
   });
 
   final HomeWeek week;
+  final void Function()? viewMoreOnPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +28,17 @@ class HomeWeekComicList extends StatelessWidget {
                   week.weekDescription,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
-                Text(
-                  'Ver más',
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Colors.blue.shade600,
-                        decoration: TextDecoration.underline,
-                        decorationColor: Colors.blue.shade600,
-                        fontWeight: FontWeight.bold,
-                      ),
+                GestureDetector(
+                  onTap: viewMoreOnPressed,
+                  child: Text(
+                    'Ver más',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Colors.blue.shade600,
+                          decoration: TextDecoration.underline,
+                          decorationColor: Colors.blue.shade600,
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
                 ),
               ],
             ),

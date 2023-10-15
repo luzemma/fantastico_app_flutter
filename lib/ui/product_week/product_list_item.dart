@@ -1,8 +1,14 @@
+import 'package:fantastico_app/models/models.dart';
 import 'package:fantastico_app/utils/color_helper.dart';
 import 'package:flutter/material.dart';
 
-class ProductItem extends StatelessWidget {
-  const ProductItem({super.key});
+class ProductListItem extends StatelessWidget {
+  const ProductListItem({
+    required this.product,
+    super.key,
+  });
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -26,43 +32,51 @@ class ProductItem extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                    height: 150,
-                    child: Image.network(
-                      'https://im.fantasticocomic.com/im/b/5d/0e00422bb9453398496a77bd6cabe.jpg',
-                      width: 80,
+                  if (product.imageFileName != null)
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 8,
+                      ),
                       height: 150,
-                      fit: BoxFit.contain,
+                      child: Image.network(
+                        product.imageFileName!,
+                        width: 80,
+                        height: 150,
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) =>
+                            const SizedBox.shrink(),
+                      ),
                     ),
-                  ),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Crime Syndicate #3 Cvr B Babs Tarr Card Stock Var',
-                          style: textTheme.bodyMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
+                        if (product.name != null) ...[
+                          Text(
+                            product.name!,
+                            style: textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 4,
-                        ),
-                        Text(
-                          'DC Comics',
-                          style: textTheme.bodyMedium?.copyWith(
-                            color: ColorHelper.lightGray,
+                          const SizedBox(
+                            height: 4,
                           ),
-                        ),
+                        ],
+                        if (product.brand != null)
+                          Text(
+                            product.brand!,
+                            style: textTheme.bodyMedium?.copyWith(
+                              color: ColorHelper.lightGray,
+                            ),
+                          ),
                       ],
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 4, right: 8),
                     child: Text(
-                      r'$100.00',
+                      r'$' '${product.offerPrice}',
                       style: textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),

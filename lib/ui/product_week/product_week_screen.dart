@@ -1,0 +1,70 @@
+import 'package:fantastico_app/repositories/product_repository.dart';
+import 'package:fantastico_app/services/service_locator.dart';
+import 'package:fantastico_app/ui/product_week/cubit/product_week_cubit.dart';
+import 'package:fantastico_app/ui/product_week/product_list_item.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class ProductWeekProvider extends StatelessWidget {
+  const ProductWeekProvider({
+    required this.weekNumber,
+    required this.description,
+    super.key,
+  });
+
+  final int weekNumber;
+  final String description;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => ProductWeekCubit(
+        productRepo: ServiceLocator.getIt<ProductRepository>(),
+        weekNumber: weekNumber,
+        title: description,
+      )..onInitial(),
+      child: const ProductWeekScreen(),
+    );
+  }
+}
+
+class ProductWeekScreen extends StatelessWidget {
+  const ProductWeekScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ProductWeekCubit, ProductWeekState>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(
+              state.title,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    color: Colors.white,
+                  ),
+            ),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(8),
+            child: state.data != null
+                ? ListView.builder(
+                    itemCount: state.data!.products.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 4,
+                          vertical: 8,
+                        ),
+                        child: ProductListItem(
+                          product: state.data!.products[index],
+                        ),
+                      );
+                    },
+                  )
+                : const SizedBox.shrink(),
+          ),
+        );
+      },
+    );
+  }
+}

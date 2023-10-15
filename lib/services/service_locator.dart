@@ -2,6 +2,7 @@ import 'package:fantastico_api_client/fantastico_api_client.dart';
 import 'package:fantastico_app/models/app_config.dart';
 import 'package:fantastico_app/repositories/home_repository.dart';
 import 'package:fantastico_app/repositories/jwt_repository.dart';
+import 'package:fantastico_app/repositories/product_repository.dart';
 import 'package:fantastico_app/repositories/session_repository.dart';
 import 'package:get_it/get_it.dart';
 
@@ -30,6 +31,12 @@ class ServiceLocator {
       )
       ..registerLazySingleton(
         () => HomeRepository(
+          apiClient: getIt<FantasticoApiClient>(),
+          appConfig: getIt<AppConfig>(),
+        ),
+      )
+      ..registerLazySingleton(
+        () => ProductRepository(
           apiClient: getIt<FantasticoApiClient>(),
           appConfig: getIt<AppConfig>(),
         ),

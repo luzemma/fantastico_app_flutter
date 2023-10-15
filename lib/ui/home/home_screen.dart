@@ -6,6 +6,7 @@ import 'package:fantastico_app/ui/home/home_week_comic_list.dart';
 import 'package:fantastico_app/utils/assets_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeProvider extends StatelessWidget {
   const HomeProvider({super.key});
@@ -58,8 +59,14 @@ class HomeScreen extends StatelessWidget {
                       itemCount: state.weeks?.length,
                       itemBuilder: (context, index) {
                         if (state.weeks != null) {
+                          final week = state.weeks![index];
                           return HomeWeekComicList(
-                            week: state.weeks![index],
+                            week: week,
+                            viewMoreOnPressed: () {
+                              context.go(
+                                '/home/week?name=${week.weekDescription}&number=${week.weekNumber}',
+                              );
+                            },
                           );
                         } else {
                           return const SizedBox.shrink();
