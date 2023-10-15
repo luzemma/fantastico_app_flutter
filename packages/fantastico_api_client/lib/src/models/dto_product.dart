@@ -16,7 +16,7 @@ class DtoProduct {
     this.synopsis,
     this.price,
     this.offerPrice,
-    this.relatedComics,
+    this.relatedProducts,
     this.availabilityDetail,
   });
 
@@ -39,7 +39,7 @@ class DtoProduct {
   @JsonKey(name: 'inWishlist', defaultValue: false)
   final bool inWishlist;
   @JsonKey(name: 'relacionados', includeIfNull: false)
-  final List<DtoRelatedProduct>? relatedComics;
+  final List<DtoRelatedProduct>? relatedProducts;
   @JsonKey(name: 'detalleDisponibilidad', includeIfNull: false)
   final List<DtoAvailability>? availabilityDetail;
 

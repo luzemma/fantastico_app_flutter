@@ -16,9 +16,6 @@ DtoProduct _$DtoProductFromJson(Map<String, dynamic> json) => DtoProduct(
       synopsis: json['sinopsis'] as String?,
       price: json['precio'] as String?,
       offerPrice: json['precioOferta'] as String?,
-      relatedComics: (json['relacionados'] as List<dynamic>?)
-          ?.map((e) => DtoRelatedProduct.fromJson(e as Map<String, dynamic>))
-          .toList(),
       availabilityDetail: (json['detalleDisponibilidad'] as List<dynamic>?)
           ?.map((e) => DtoAvailability.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -43,7 +40,6 @@ Map<String, dynamic> _$DtoProductToJson(DtoProduct instance) {
   writeNotNull('precioOferta', instance.offerPrice);
   val['disponibleTV'] = instance.isAvailableInVirtualShop;
   val['inWishlist'] = instance.inWishlist;
-  writeNotNull('relacionados', instance.relatedComics);
   writeNotNull('detalleDisponibilidad', instance.availabilityDetail);
   return val;
 }
