@@ -12,20 +12,23 @@ class ProductsApi {
 
   final FantasticoApiClient _apiClient;
 
-  Future<List<DtoHomeWeek>> getWeeks() async {
-    try {
-      final response = await _apiClient.get('/home');
-      final data = response.data as Map<String, dynamic>;
-      final rawData = data['data'] as List?;
+  static const _endpoint = '/productos';
 
-      if (rawData != null) {
-        final weeks = rawData.map(
-          (item) => DtoHomeWeek.fromJson(item as Map<String, dynamic>),
-        );
-        return weeks.toList();
-      } else {
-        return List.empty();
-      }
+  Future<DtoWeek> getProductsByWeekNumber(int weekNumber) async {
+    try {
+      final path = '$_endpoint/semana/$weekNumber';
+      final response = await _apiClient.get(
+        path,
+        options: Options(
+          headers: {
+            'requiresAuth': true,
+          },
+        ),
+      );
+      final data = response.data as Map<String, dynamic>;
+
+      final week = DtoWeek.fromJson(data['data'] as Map<String, dynamic>);
+      return week;
     } on DioException catch (e) {
       throw CustomApiError.fromDioError(e);
     }

@@ -14,7 +14,14 @@ class HomeApi {
 
   Future<List<DtoHomeWeek>> getWeeks() async {
     try {
-      final response = await _apiClient.get('/home');
+      final response = await _apiClient.get(
+        '/home',
+        options: Options(
+          headers: {
+            'requiresAuth': true,
+          },
+        ),
+      );
       final data = response.data as Map<String, dynamic>;
       final rawData = data['data'] as List?;
 
