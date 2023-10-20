@@ -61,7 +61,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
   }
 
   void _onStartScanner() {
-    _barcodeScanner ??= BarcodeScanner(formats: [BarcodeFormat.qrCode]);
+    _barcodeScanner ??= BarcodeScanner();
     setState(() {
       _scannerStarted = !_scannerStarted;
     });
