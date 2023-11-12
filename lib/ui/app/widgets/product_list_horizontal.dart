@@ -1,14 +1,25 @@
-import 'package:fantastico_app/models/home_week.dart';
 import 'package:flutter/material.dart';
 
-class HomeWeekComicList extends StatelessWidget {
-  const HomeWeekComicList({
-    required this.week,
+class ProductCompact {
+  ProductCompact({
+    required this.id,
+    required this.imageURL,
+  });
+
+  final String id;
+  final String imageURL;
+}
+
+class ProductListHorizontal extends StatelessWidget {
+  const ProductListHorizontal({
+    required this.title,
+    required this.products,
     this.viewMoreOnPressed,
     super.key,
   });
 
-  final HomeWeek week;
+  final String title;
+  final List<ProductCompact> products;
   final void Function()? viewMoreOnPressed;
 
   @override
@@ -25,7 +36,7 @@ class HomeWeekComicList extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  week.weekDescription,
+                  title,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 GestureDetector(
@@ -43,27 +54,26 @@ class HomeWeekComicList extends StatelessWidget {
               ],
             ),
           ),
-          if (week.weekProducts != null)
-            Expanded(
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: week.weekProducts!.length,
-                itemBuilder: (context, index) {
-                  final product = week.weekProducts![index];
-                  return Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+          Expanded(
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: products.length,
+              itemBuilder: (context, index) {
+                final product = products[index];
+                return Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                  height: 200,
+                  child: Image.network(
+                    product.imageURL,
+                    width: 120,
                     height: 200,
-                    child: Image.network(
-                      product.productImage,
-                      width: 120,
-                      height: 200,
-                      fit: BoxFit.contain,
-                    ),
-                  );
-                },
-              ),
+                    fit: BoxFit.contain,
+                  ),
+                );
+              },
             ),
+          ),
         ],
       ),
     );

@@ -1,8 +1,8 @@
 import 'package:fantastico_app/repositories/home_repository.dart';
 import 'package:fantastico_app/services/service_locator.dart';
+import 'package:fantastico_app/ui/app/widgets/product_list_horizontal.dart';
 import 'package:fantastico_app/ui/home/cubit/home_cubit.dart';
 import 'package:fantastico_app/ui/home/home_brand_list.dart';
-import 'package:fantastico_app/ui/home/home_week_comic_list.dart';
 import 'package:fantastico_app/utils/assets_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,8 +60,18 @@ class HomeScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         if (state.weeks != null) {
                           final week = state.weeks![index];
-                          return HomeWeekComicList(
-                            week: week,
+                          return ProductListHorizontal(
+                            title: week.weekDescription,
+                            products: week.weekProducts != null
+                                ? week.weekProducts!
+                                    .map(
+                                      (e) => ProductCompact(
+                                        id: e.productId,
+                                        imageURL: e.productImage,
+                                      ),
+                                    )
+                                    .toList()
+                                : List.empty(),
                             viewMoreOnPressed: () {
                               context.go(
                                 '/home/week?name=${week.weekDescription}&number=${week.weekNumber}',

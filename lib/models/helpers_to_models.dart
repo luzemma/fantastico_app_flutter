@@ -1,7 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:fantastico_api_client/fantastico_api_client.dart';
 import 'package:fantastico_app/models/models.dart';
-import 'package:fantastico_app/models/week.dart';
 import 'package:fantastico_app/utils/image_helper.dart';
 import 'package:fantastico_app/utils/string_extension.dart';
 
