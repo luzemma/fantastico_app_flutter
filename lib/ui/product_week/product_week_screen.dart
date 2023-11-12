@@ -4,6 +4,7 @@ import 'package:fantastico_app/ui/product_item/product_list_item.dart';
 import 'package:fantastico_app/ui/product_week/cubit/product_week_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductWeekProvider extends StatelessWidget {
   const ProductWeekProvider({
@@ -57,6 +58,9 @@ class ProductWeekScreen extends StatelessWidget {
                         ),
                         child: ProductListItem(
                           product: state.data!.products[index],
+                          onTap: () => context.go(
+                            '/home/week/product/${state.data!.products[index].hashedId}',
+                          ),
                         ),
                       );
                     },

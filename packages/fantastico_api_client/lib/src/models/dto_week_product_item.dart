@@ -17,7 +17,6 @@ class DtoWeekProductItem {
     this.price,
     this.offerPrice,
     this.imageFileName,
-    this.relatedProducts,
     this.availabilityDetail,
   });
 
@@ -41,8 +40,6 @@ class DtoWeekProductItem {
   final bool isAvailableInVirtualShop;
   @JsonKey(name: 'inWishList', defaultValue: false)
   final bool inWishlist;
-  @JsonKey(name: 'relacionados', includeIfNull: false)
-  final List<DtoRelatedProduct>? relatedProducts;
   @JsonKey(name: 'detalleDisponibilidad', includeIfNull: false)
   final List<DtoAvailability>? availabilityDetail;
 

@@ -58,8 +58,6 @@ RelatedProduct? dtoToRelatedProduct(
       name: dto.name,
       line: dto.line,
       brand: dto.brand,
-      price: dto.price,
-      offerPrice: dto.offerPrice,
       imageFileName:
           '$baseImageUrl/${ImageHelper.getProductImagePath(dto.imageFileName)}',
     );
@@ -67,7 +65,7 @@ RelatedProduct? dtoToRelatedProduct(
   return null;
 }
 
-Product? dtoToProduct(DtoWeekProductItem? dto, String baseImageUrl) {
+Product? dtoWeekProductToProduct(DtoWeekProductItem? dto, String baseImageUrl) {
   if (dto != null) {
     return Product(
       id: dto.id,
@@ -81,12 +79,6 @@ Product? dtoToProduct(DtoWeekProductItem? dto, String baseImageUrl) {
           '$baseImageUrl/${ImageHelper.getProductImagePath(dto.imageFileName)}',
       isAvailableInVirtualShop: dto.isAvailableInVirtualShop,
       inWishlist: dto.inWishlist,
-      relatedComics: dto.relatedProducts != null
-          ? dto.relatedProducts!
-              .map((e) => dtoToRelatedProduct(e, baseImageUrl))
-              .whereNotNull()
-              .toList()
-          : null,
       availabilityDetail: dto.availabilityDetail != null
           ? dto.availabilityDetail!
               .map(dtoToAvailability)
@@ -100,35 +92,35 @@ Product? dtoToProduct(DtoWeekProductItem? dto, String baseImageUrl) {
 
 List<Product> dtoToWeekProduct(DtoWeekProduct dto, String baseImageUrl) {
   final comics = dto.comics
-      .map((e) => dtoToProduct(e, baseImageUrl))
+      .map((e) => dtoWeekProductToProduct(e, baseImageUrl))
       .whereNotNull()
       .toList();
   final books = dto.books
-      .map((e) => dtoToProduct(e, baseImageUrl))
+      .map((e) => dtoWeekProductToProduct(e, baseImageUrl))
       .whereNotNull()
       .toList();
   final magazines = dto.magazines
-      .map((e) => dtoToProduct(e, baseImageUrl))
+      .map((e) => dtoWeekProductToProduct(e, baseImageUrl))
       .whereNotNull()
       .toList();
   final figures = dto.figures
-      .map((e) => dtoToProduct(e, baseImageUrl))
+      .map((e) => dtoWeekProductToProduct(e, baseImageUrl))
       .whereNotNull()
       .toList();
   final games = dto.games
-      .map((e) => dtoToProduct(e, baseImageUrl))
+      .map((e) => dtoWeekProductToProduct(e, baseImageUrl))
       .whereNotNull()
       .toList();
   final cards = dto.cards
-      .map((e) => dtoToProduct(e, baseImageUrl))
+      .map((e) => dtoWeekProductToProduct(e, baseImageUrl))
       .whereNotNull()
       .toList();
   final posters = dto.posters
-      .map((e) => dtoToProduct(e, baseImageUrl))
+      .map((e) => dtoWeekProductToProduct(e, baseImageUrl))
       .whereNotNull()
       .toList();
   final others = dto.others
-      .map((e) => dtoToProduct(e, baseImageUrl))
+      .map((e) => dtoWeekProductToProduct(e, baseImageUrl))
       .whereNotNull()
       .toList();
 
@@ -149,5 +141,30 @@ Week dtoToWeek(DtoWeek dto, String baseImageUrl) {
   return Week(
     products: dtoToWeekProduct(dto.products, baseImageUrl),
     quantity: dto.quantity,
+  );
+}
+
+Product dtoProductByIdToProduct(DtoProductById dto, String baseImageUrl) {
+  return Product(
+    id: dto.id,
+    name: dto.name,
+    line: dto.line,
+    brand: dto.brand,
+    synopsis: dto.synopsis,
+    price: dto.price,
+    offerPrice: dto.offerPrice,
+    imageFileName:
+        '$baseImageUrl/${ImageHelper.getProductImagePath(dto.imageFileName)}',
+    isAvailableInVirtualShop: dto.isAvailableInVirtualShop,
+    inWishlist: dto.inWishlist,
+    relatedComics: dto.relatedProducts != null
+        ? dto.relatedProducts!
+            .map((e) => dtoToRelatedProduct(e, baseImageUrl))
+            .whereNotNull()
+            .toList()
+        : null,
+    availabilityDetail: dto.availabilityDetail != null
+        ? dto.availabilityDetail!.map(dtoToAvailability).whereNotNull().toList()
+        : null,
   );
 }

@@ -11,8 +11,6 @@ class DtoRelatedProduct {
     this.name,
     this.line,
     this.brand,
-    this.price,
-    this.offerPrice,
     this.imageFileName,
   });
 
@@ -24,10 +22,6 @@ class DtoRelatedProduct {
   final String? line;
   @JsonKey(name: 'marcaDescrip', includeIfNull: false)
   final String? brand;
-  @JsonKey(name: 'precio', includeIfNull: false)
-  final String? price;
-  @JsonKey(name: 'precioOferta', includeIfNull: false)
-  final String? offerPrice;
   @JsonKey(name: 'imageFilename', includeIfNull: false)
   final String? imageFileName;
 

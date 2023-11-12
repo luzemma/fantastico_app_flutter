@@ -1,6 +1,7 @@
 import 'package:fantastico_app/ui/app/widgets/scaffold_with_nav_bar.dart';
 import 'package:fantastico_app/ui/home/home_screen.dart';
 import 'package:fantastico_app/ui/product_brand/product_brand_screen.dart';
+import 'package:fantastico_app/ui/product_detail/product_detail_screen.dart';
 import 'package:fantastico_app/ui/product_week/product_week_screen.dart';
 import 'package:fantastico_app/ui/scanner/scanner_screen.dart';
 import 'package:fantastico_app/ui/search/search_screen.dart';
@@ -10,6 +11,15 @@ import 'package:go_router/go_router.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
+
+final _productRouter = GoRoute(
+  path: 'product/:id',
+  builder: (BuildContext context, GoRouterState state) {
+    return ProductDetailProvider(
+      hashedId: state.pathParameters['id'],
+    );
+  },
+);
 
 final appRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
@@ -46,6 +56,9 @@ final appRouter = GoRouter(
                       description: name,
                     );
                   },
+                  routes: <RouteBase>[
+                    _productRouter,
+                  ],
                 ),
                 GoRoute(
                   path: 'brand',
@@ -59,6 +72,9 @@ final appRouter = GoRouter(
                       description: name,
                     );
                   },
+                  routes: <RouteBase>[
+                    _productRouter,
+                  ],
                 ),
               ],
             ),
@@ -71,6 +87,9 @@ final appRouter = GoRouter(
               builder: (context, state) {
                 return const ScannerScreen();
               },
+              routes: <RouteBase>[
+                _productRouter,
+              ],
             ),
           ],
         ),
@@ -79,6 +98,9 @@ final appRouter = GoRouter(
             GoRoute(
               path: '/search',
               builder: (context, state) => const SearchScreen(),
+              routes: <RouteBase>[
+                _productRouter,
+              ],
             ),
           ],
         ),

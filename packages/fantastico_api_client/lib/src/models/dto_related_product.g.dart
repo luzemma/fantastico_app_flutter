@@ -12,8 +12,6 @@ DtoRelatedProduct _$DtoRelatedProductFromJson(Map<String, dynamic> json) =>
       name: json['artDescrip'] as String?,
       line: json['lineaDescrip'] as String?,
       brand: json['marcaDescrip'] as String?,
-      price: json['precio'] as String?,
-      offerPrice: json['precioOferta'] as String?,
       imageFileName: json['imageFilename'] as String?,
     );
 
@@ -31,8 +29,6 @@ Map<String, dynamic> _$DtoRelatedProductToJson(DtoRelatedProduct instance) {
   writeNotNull('artDescrip', instance.name);
   writeNotNull('lineaDescrip', instance.line);
   writeNotNull('marcaDescrip', instance.brand);
-  writeNotNull('precio', instance.price);
-  writeNotNull('precioOferta', instance.offerPrice);
   writeNotNull('imageFilename', instance.imageFileName);
   return val;
 }

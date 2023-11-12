@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:fantastico_app/models/models.dart';
 
 class Product {
@@ -28,4 +30,6 @@ class Product {
   final bool inWishlist;
   final List<RelatedProduct>? relatedComics;
   final List<Availability>? availabilityDetail;
+
+  String get hashedId => base64.encode(id.codeUnits);
 }

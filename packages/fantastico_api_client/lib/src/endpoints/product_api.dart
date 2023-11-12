@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fantastico_api_client/fantastico_api_client.dart';
 import 'package:fantastico_api_client/src/exceptions/custom_api_error.dart';
-import 'package:fantastico_api_client/src/models/dto_product_by_id.dart';
 import 'package:fantastico_api_client/src/repositories/jwt_repository.dart';
 
 class ProductApi {

@@ -18,9 +18,6 @@ DtoWeekProductItem _$DtoWeekProductItemFromJson(Map<String, dynamic> json) =>
       price: json['precio'] as String?,
       offerPrice: json['precioOferta'] as String?,
       imageFileName: json['imagen'] as String?,
-      relatedProducts: (json['relacionados'] as List<dynamic>?)
-          ?.map((e) => DtoRelatedProduct.fromJson(e as Map<String, dynamic>))
-          .toList(),
       availabilityDetail: (json['detalleDisponibilidad'] as List<dynamic>?)
           ?.map((e) => DtoAvailability.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -46,7 +43,6 @@ Map<String, dynamic> _$DtoWeekProductItemToJson(DtoWeekProductItem instance) {
   writeNotNull('imagen', instance.imageFileName);
   val['disponibleTV'] = instance.isAvailableInVirtualShop;
   val['inWishList'] = instance.inWishlist;
-  writeNotNull('relacionados', instance.relatedProducts);
   writeNotNull('detalleDisponibilidad', instance.availabilityDetail);
   return val;
 }

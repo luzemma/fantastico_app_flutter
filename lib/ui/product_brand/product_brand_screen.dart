@@ -4,6 +4,7 @@ import 'package:fantastico_app/ui/product_brand/cubit/product_brand_cubit.dart';
 import 'package:fantastico_app/ui/product_item/product_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductBrandProvider extends StatelessWidget {
   const ProductBrandProvider({
@@ -57,6 +58,9 @@ class ProductBrandScreen extends StatelessWidget {
                         ),
                         child: ProductListItem(
                           product: state.data!.products[index],
+                          onTap: () => context.go(
+                            '/home/brand/product/${state.data!.products[index].hashedId}',
+                          ),
                         ),
                       );
                     },

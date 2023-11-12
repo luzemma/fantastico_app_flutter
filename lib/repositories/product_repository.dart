@@ -29,4 +29,11 @@ class ProductRepository {
 
     return dtoToWeek(data, _appConfig.imageBaseUrl);
   }
+
+  Future<Product> getProductByHashedId(String hashedId) async {
+    final api = ProductApi(apiClient: _apiClient);
+    final data = await api.getProductById(hashedId);
+
+    return dtoProductByIdToProduct(data, _appConfig.imageBaseUrl);
+  }
 }
