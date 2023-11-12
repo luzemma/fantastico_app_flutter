@@ -1,6 +1,10 @@
+import 'dart:convert';
+
+import 'package:crypto/crypto.dart';
 import 'package:fantastico_app/ui/scanner/barcode_camera_scanner.dart';
 import 'package:fantastico_app/utils/color_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_mlkit_barcode_scanning/google_mlkit_barcode_scanning.dart';
 
 class ScannerScreen extends StatefulWidget {
@@ -16,6 +20,14 @@ class _ScannerScreenState extends State<ScannerScreen> {
   bool _isBusy = false;
 
   bool _scannerStarted = false;
+
+  static const salt = String.fromEnvironment('BARCODE_SALT');
+
+  @override
+  void initState() {
+    if (salt.isEmpty) return;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,9 +86,12 @@ class _ScannerScreenState extends State<ScannerScreen> {
 
     _isBusy = true;
     final barcodes = await _barcodeScanner!.processImage(inputImage);
-    if (barcodes.isNotEmpty) {
+    if (barcodes.isNotEmpty && barcodes[0].rawValue != null) {
+      final hashed = _getHashedBarcode(barcodes[0].rawValue!);
       Future.delayed(const Duration(milliseconds: 500), () {
-        Navigator.of(context).pop(barcodes[0]);
+        context.go(
+          '/scanner/product/$hashed',
+        );
       });
     } else {
       _isBusy = false;
@@ -88,5 +103,10 @@ class _ScannerScreenState extends State<ScannerScreen> {
     _canProcess = false;
     _barcodeScanner?.close();
     super.dispose();
+  }
+
+  String _getHashedBarcode(String rawBarcode) {
+    final hash = '\\x${md5.convert(utf8.encode('$rawBarcode$salt'))}';
+    return base64.encode(hash.codeUnits);
   }
 }

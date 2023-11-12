@@ -10,6 +10,7 @@ dependencies:
   bloc: ^8.1.2
   camera: ^0.10.5+5
   collection: ^1.17.1
+  crypto: ^3.0.3
   equatable: ^2.0.5
   fantastico_api_client:
     path: packages/fantastico_api_client
