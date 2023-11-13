@@ -39,18 +39,19 @@ class ProductListHorizontal extends StatelessWidget {
                   title,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
-                GestureDetector(
-                  onTap: viewMoreOnPressed,
-                  child: Text(
-                    'Ver más',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Colors.blue.shade600,
-                          decoration: TextDecoration.underline,
-                          decorationColor: Colors.blue.shade600,
-                          fontWeight: FontWeight.bold,
-                        ),
+                if (viewMoreOnPressed != null)
+                  GestureDetector(
+                    onTap: viewMoreOnPressed,
+                    child: Text(
+                      'Ver más',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: Colors.blue.shade600,
+                            decoration: TextDecoration.underline,
+                            decorationColor: Colors.blue.shade600,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
                   ),
-                ),
               ],
             ),
           ),

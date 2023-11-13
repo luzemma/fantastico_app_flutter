@@ -1,4 +1,5 @@
 import 'package:fantastico_app/models/models.dart';
+import 'package:fantastico_app/ui/app/widgets/button_add_cart.dart';
 import 'package:fantastico_app/utils/color_helper.dart';
 import 'package:flutter/material.dart';
 
@@ -67,13 +68,28 @@ class ProductListItem extends StatelessWidget {
                               height: 4,
                             ),
                           ],
-                          if (product.brand != null)
+                          if (product.brand != null) ...[
                             Text(
                               product.brand!,
                               style: textTheme.bodyMedium?.copyWith(
                                 color: ColorHelper.lightGray,
                               ),
                             ),
+                            const SizedBox(
+                              height: 4,
+                            ),
+                          ],
+                          if (product.line != null) ...[
+                            Text(
+                              product.line!,
+                              style: textTheme.bodyMedium?.copyWith(
+                                color: ColorHelper.lightGray,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 4,
+                            ),
+                          ]
                         ],
                       ),
                     ),
@@ -88,26 +104,9 @@ class ProductListItem extends StatelessWidget {
                     ),
                   ],
                 ),
-                Container(
+                ButtonAddCart(
                   alignment: Alignment.centerRight,
-                  margin: const EdgeInsets.symmetric(horizontal: 8),
-                  child: ElevatedButton.icon(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(ColorHelper.primaryBlue),
-                    ),
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.shopping_cart,
-                      color: Colors.white,
-                    ),
-                    label: Text(
-                      'Agregar al carrito',
-                      style: textTheme.bodyMedium?.copyWith(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
+                  onPressed: () {},
                 ),
                 const SizedBox(
                   height: 8,

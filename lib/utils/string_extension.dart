@@ -2,7 +2,7 @@ extension StringNullExtension on String? {
   int? toInteger() {
     if (this != null && this!.isNotEmpty) {
       try {
-        int.tryParse(this!);
+        return int.tryParse(this!);
       } catch (e) {
         return null;
       }
