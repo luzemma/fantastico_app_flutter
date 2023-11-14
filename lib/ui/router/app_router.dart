@@ -97,7 +97,7 @@ final appRouter = GoRouter(
           routes: <RouteBase>[
             GoRoute(
               path: '/search',
-              builder: (context, state) => const SearchScreen(),
+              builder: (context, state) => const SearchProvider(),
               routes: <RouteBase>[
                 _productRouter,
               ],

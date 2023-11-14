@@ -36,4 +36,12 @@ class ProductRepository {
 
     return dtoProductByIdToProduct(data, _appConfig.imageBaseUrl);
   }
+
+  Future<Week> getProductsBySearchingWords(List<String> searchingWords) async {
+    final filter = searchingWords.map(Uri.encodeComponent).join('+');
+    final api = ProductApi(apiClient: _apiClient);
+    final data = await api.getProductsBySearchingWords(filter);
+
+    return dtoToWeek(data, _appConfig.imageBaseUrl);
+  }
 }
