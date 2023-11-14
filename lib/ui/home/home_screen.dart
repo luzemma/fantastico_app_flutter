@@ -77,6 +77,7 @@ class HomeScreen extends StatelessWidget {
                                 '/home/week?name=${week.weekDescription}&number=${week.weekNumber}',
                               );
                             },
+                            parentRoute: '/home',
                           );
                         } else {
                           return const SizedBox.shrink();

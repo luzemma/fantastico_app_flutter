@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class RelatedProduct {
   RelatedProduct({
     required this.id,
@@ -16,4 +18,6 @@ class RelatedProduct {
   final String? price;
   final String? offerPrice;
   final String? imageFileName;
+
+  String get hashedId => base64.encode(id.codeUnits);
 }

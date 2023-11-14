@@ -76,6 +76,7 @@ final appRouter = GoRouter(
                     _productRouter,
                   ],
                 ),
+                _productRouter,
               ],
             ),
           ],

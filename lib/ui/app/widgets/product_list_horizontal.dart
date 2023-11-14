@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductCompact {
   ProductCompact({
@@ -8,18 +11,22 @@ class ProductCompact {
 
   final String id;
   final String imageURL;
+
+  String get hashedId => base64.encode(id.codeUnits);
 }
 
 class ProductListHorizontal extends StatelessWidget {
   const ProductListHorizontal({
     required this.title,
     required this.products,
+    required this.parentRoute,
     this.viewMoreOnPressed,
     super.key,
   });
 
   final String title;
   final List<ProductCompact> products;
+  final String parentRoute;
   final void Function()? viewMoreOnPressed;
 
   @override
@@ -61,15 +68,28 @@ class ProductListHorizontal extends StatelessWidget {
               itemCount: products.length,
               itemBuilder: (context, index) {
                 final product = products[index];
-                return Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                  height: 200,
-                  child: Image.network(
-                    product.imageURL,
-                    width: 120,
+                return GestureDetector(
+                  onTap: () {
+                    if (parentRoute == '/home') {
+                      context.go(
+                        '$parentRoute/product/${product.hashedId}',
+                      );
+                    } else {
+                      context.pushReplacement(
+                        '$parentRoute/product/${product.hashedId}',
+                      );
+                    }
+                  },
+                  child: Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                     height: 200,
-                    fit: BoxFit.contain,
+                    child: Image.network(
+                      product.imageURL,
+                      width: 120,
+                      height: 200,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 );
               },

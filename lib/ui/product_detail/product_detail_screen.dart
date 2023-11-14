@@ -6,6 +6,7 @@ import 'package:fantastico_app/ui/product_detail/cubit/product_detail_cubit.dart
 import 'package:fantastico_app/utils/color_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductDetailProvider extends StatelessWidget {
   const ProductDetailProvider({
@@ -33,6 +34,14 @@ class ProductDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final routes = GoRouter.of(context)
+        .routerDelegate
+        .currentConfiguration
+        .matches
+        .map((e) => e.matchedLocation)
+        .toList();
+    final previous =
+        routes.length - 2 >= 0 ? routes[routes.length - 2] : '/home';
     return Scaffold(
       appBar: AppBar(),
       body: BlocBuilder<ProductDetailCubit, ProductDetailState>(
@@ -52,7 +61,9 @@ class ProductDetailScreen extends StatelessWidget {
                   children: [
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 8),
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius:
@@ -220,6 +231,7 @@ class ProductDetailScreen extends StatelessWidget {
                               ),
                             )
                             .toList(),
+                        parentRoute: previous,
                       ),
                   ],
                 ),
