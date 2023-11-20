@@ -72,6 +72,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                   ),
+                  autocorrect: false,
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
                       return 'Este campo es obligatorio';
