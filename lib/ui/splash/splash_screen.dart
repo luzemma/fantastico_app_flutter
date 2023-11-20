@@ -5,6 +5,7 @@ import 'package:fantastico_app/repositories/session_repository.dart';
 import 'package:fantastico_app/services/service_locator.dart';
 import 'package:fantastico_app/ui/app/widgets/spinner_loader.dart';
 import 'package:fantastico_app/ui/splash/cubit/splash_cubit.dart';
+import 'package:fantastico_app/utils/assets_helper.dart';
 import 'package:fantastico_app/utils/color_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -51,14 +52,14 @@ class SplashScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/images/logo_fantastico.png',
+                  AssetHelper.logoFantastico,
                   height: 100,
                 ),
                 const SizedBox(
                   height: 16,
                 ),
                 Image.asset(
-                  'assets/images/logo_comicastle.png',
+                  AssetHelper.logoComicCastle,
                   height: 100,
                 ),
                 const SizedBox(

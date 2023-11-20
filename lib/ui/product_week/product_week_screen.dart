@@ -1,5 +1,6 @@
 import 'package:fantastico_app/repositories/product_repository.dart';
 import 'package:fantastico_app/services/service_locator.dart';
+import 'package:fantastico_app/ui/app/widgets/custom_app_bar.dart';
 import 'package:fantastico_app/ui/product_item/product_list_item.dart';
 import 'package:fantastico_app/ui/product_week/cubit/product_week_cubit.dart';
 import 'package:flutter/material.dart';
@@ -37,13 +38,8 @@ class ProductWeekScreen extends StatelessWidget {
     return BlocBuilder<ProductWeekCubit, ProductWeekState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            title: Text(
-              state.title,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: Colors.white,
-                  ),
-            ),
+          appBar: const CustomAppBar(
+            toolbarHeight: 100,
           ),
           body: Padding(
             padding: const EdgeInsets.all(8),

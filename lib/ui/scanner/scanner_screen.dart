@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
+import 'package:fantastico_app/ui/app/widgets/custom_app_bar.dart';
 import 'package:fantastico_app/ui/scanner/barcode_camera_scanner.dart';
 import 'package:fantastico_app/utils/color_helper.dart';
 import 'package:flutter/material.dart';
@@ -32,8 +33,10 @@ class _ScannerScreenState extends State<ScannerScreen> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-
     return Scaffold(
+      appBar: const CustomAppBar(
+        toolbarHeight: 100,
+      ),
       body: SafeArea(
         child: Center(
           child: Column(

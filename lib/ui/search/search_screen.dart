@@ -1,5 +1,6 @@
 import 'package:fantastico_app/repositories/product_repository.dart';
 import 'package:fantastico_app/services/service_locator.dart';
+import 'package:fantastico_app/ui/app/widgets/custom_app_bar.dart';
 import 'package:fantastico_app/ui/product_item/product_list_item.dart';
 import 'package:fantastico_app/ui/search/cubit/search_cubit.dart';
 import 'package:flutter/material.dart';
@@ -34,13 +35,8 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Búsqueda',
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                color: Colors.white,
-              ),
-        ),
+      appBar: const CustomAppBar(
+        toolbarHeight: 100,
       ),
       body: BlocBuilder<SearchCubit, SearchState>(
         builder: (context, state) {

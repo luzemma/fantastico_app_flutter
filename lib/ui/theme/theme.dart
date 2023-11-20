@@ -14,6 +14,8 @@ final appThemeData = {
     ),
     appBarTheme: AppBarTheme(
       color: ColorHelper.primaryBlue,
+      iconTheme: const IconThemeData(color: Colors.white),
+      foregroundColor: Colors.white,
       titleTextStyle: const TextStyle(
         fontFamily: 'Montserrat',
         fontWeight: FontWeight.w600,

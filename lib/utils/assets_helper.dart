@@ -7,4 +7,7 @@ class AssetHelper {
   static const String brandArchieComics = 'assets/images/brands/archie.png';
 
   static const String avengersCover = 'assets/images/avengers_cover.jpg';
+
+  static const String logoFantastico = 'assets/images/logo_fantastico.png';
+  static const String logoComicCastle = 'assets/images/logo_comicastle.png';
 }
