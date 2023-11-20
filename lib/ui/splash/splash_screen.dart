@@ -1,7 +1,9 @@
 import 'package:fantastico_app/models/enums/cubit_status.dart';
+import 'package:fantastico_app/models/models.dart';
 import 'package:fantastico_app/repositories/jwt_repository.dart';
 import 'package:fantastico_app/repositories/session_repository.dart';
 import 'package:fantastico_app/services/service_locator.dart';
+import 'package:fantastico_app/ui/app/widgets/spinner_loader.dart';
 import 'package:fantastico_app/ui/splash/cubit/splash_cubit.dart';
 import 'package:fantastico_app/utils/color_helper.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +19,7 @@ class SplashProvider extends StatelessWidget {
       create: (context) => SplashCubit(
         sessionRepo: ServiceLocator.getIt<SessionRepository>(),
         jwtRepository: ServiceLocator.getIt<JwtRepository>(),
+        appConfig: ServiceLocator.getIt<AppConfig>(),
       )..onInitial(),
       child: const SplashScreen(),
     );
@@ -28,7 +31,8 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SplashCubit, SplashState>(
+    final textTheme = Theme.of(context).textTheme;
+    return BlocConsumer<SplashCubit, SplashState>(
       listenWhen: (previous, current) {
         return previous.status != current.status;
       },
@@ -37,18 +41,76 @@ class SplashScreen extends StatelessWidget {
           context.go('/home');
         }
       },
-      child: ColoredBox(
-        color: ColorHelper.primaryBlue,
-        child: const Center(
-          child: SizedBox(
-            height: 200,
-            width: 200,
-            child: CircularProgressIndicator(
-              backgroundColor: Colors.white,
+      builder: (context, state) {
+        return ColoredBox(
+          color: ColorHelper.primaryBlue,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/logo_fantastico.png',
+                  height: 100,
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Image.asset(
+                  'assets/images/logo_comicastle.png',
+                  height: 100,
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                const SpinnerLoader(
+                  width: 50,
+                  height: 50,
+                  color: Colors.white,
+                ),
+                const SizedBox(
+                  height: 32,
+                ),
+                Visibility(
+                  visible: state.showEnviroment,
+                  child: Text(
+                    state.enviroment ?? '',
+                    style: textTheme.headlineMedium?.copyWith(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                if (state.version != null) ...[
+                  Text(
+                    'Version ${state.version}',
+                    style: textTheme.headlineLarge?.copyWith(
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                ],
+                if (state.code != null) ...[
+                  Text(
+                    'Code ${state.code}',
+                    style: textTheme.headlineMedium?.copyWith(
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                ],
+              ],
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
