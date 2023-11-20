@@ -3,6 +3,7 @@ import 'package:fantastico_app/services/service_locator.dart';
 import 'package:fantastico_app/ui/app/widgets/button_add_cart.dart';
 import 'package:fantastico_app/ui/app/widgets/custom_app_bar.dart';
 import 'package:fantastico_app/ui/app/widgets/product_list_horizontal.dart';
+import 'package:fantastico_app/ui/app/widgets/spinner_loader.dart';
 import 'package:fantastico_app/ui/product_detail/cubit/product_detail_cubit.dart';
 import 'package:fantastico_app/utils/color_helper.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +52,10 @@ class ProductDetailScreen extends StatelessWidget {
         builder: (context, state) {
           if (state.product == null) {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: SpinnerLoader(
+                width: 100,
+                height: 100,
+              ),
             );
           }
           final product = state.product!;
