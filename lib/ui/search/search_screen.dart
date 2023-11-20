@@ -1,6 +1,8 @@
+import 'package:fantastico_app/models/enums/cubit_status.dart';
 import 'package:fantastico_app/repositories/product_repository.dart';
 import 'package:fantastico_app/services/service_locator.dart';
 import 'package:fantastico_app/ui/app/widgets/custom_app_bar.dart';
+import 'package:fantastico_app/ui/app/widgets/spinner_loader.dart';
 import 'package:fantastico_app/ui/product_item/product_list_item.dart';
 import 'package:fantastico_app/ui/search/cubit/search_cubit.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +60,12 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                     suffixIcon: IconButton(
                       icon: const Icon(Icons.close),
-                      onPressed: _searchController.clear,
+                      onPressed: () {
+                        _searchController.clear();
+                        context.read<SearchCubit>().onSearch(
+                              _searchController.text,
+                            );
+                      },
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -81,31 +88,40 @@ class _SearchScreenState extends State<SearchScreen> {
                   },
                   onFieldSubmitted: context.read<SearchCubit>().onSearch,
                 ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: state.data != null
-                        ? ListView.builder(
-                            itemCount: state.data!.products.length,
-                            itemBuilder: (context, index) {
-                              final product = state.data!.products[index];
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 4,
-                                  vertical: 8,
-                                ),
-                                child: ProductListItem(
-                                  product: product,
-                                  onTap: () => context.go(
-                                    '/search/product/${product.hashedId}',
-                                  ),
-                                ),
-                              );
-                            },
-                          )
-                        : const SizedBox.shrink(),
+                if (state.status.isLoading) ...[
+                  const SizedBox(
+                    height: 50,
                   ),
-                ),
+                  const SpinnerLoader(
+                    height: 100,
+                    width: 100,
+                  ),
+                ] else if (state.status.isSuccessful)
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: state.data != null
+                          ? ListView.builder(
+                              itemCount: state.data!.products.length,
+                              itemBuilder: (context, index) {
+                                final product = state.data!.products[index];
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 4,
+                                    vertical: 8,
+                                  ),
+                                  child: ProductListItem(
+                                    product: product,
+                                    onTap: () => context.go(
+                                      '/search/product/${product.hashedId}',
+                                    ),
+                                  ),
+                                );
+                              },
+                            )
+                          : const SizedBox.shrink(),
+                    ),
+                  ),
               ],
             ),
           );

@@ -6,6 +6,10 @@ class Week {
     required this.quantity,
   });
 
+  Week.empty()
+      : products = [],
+        quantity = 0;
+
   final List<Product> products;
   final int quantity;
 }

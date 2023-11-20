@@ -13,6 +13,10 @@ class SearchCubit extends Cubit<SearchState> {
         super(const SearchState());
 
   Future<void> onSearch(String text) async {
+    if (text.isEmpty) {
+      emit(state.copyWith(data: Week.empty()));
+      return;
+    }
     emit(state.copyWith(status: CubitStatus.loading));
     try {
       final data =
