@@ -36,62 +36,53 @@ class HomeScreen extends StatelessWidget {
             toolbarHeight: 100,
           ),
           body: SafeArea(
-            child: ColoredBox(
-              color: Colors.white,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Stack(
-                    children: [
-                      Image.asset(
-                        AssetHelper.avengersCover,
-                        height: 200,
-                        width: size.width,
-                        fit: BoxFit.cover,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  const HomeBrandList(),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  if (state.weeks != null)
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: state.weeks?.length,
-                        itemBuilder: (context, index) {
-                          if (state.weeks != null) {
-                            final week = state.weeks![index];
-                            return ProductListHorizontal(
-                              title: week.weekDescription,
-                              products: week.weekProducts != null
-                                  ? week.weekProducts!
-                                      .map(
-                                        (e) => ProductCompact(
-                                          id: e.productId,
-                                          imageURL: e.productImage,
-                                        ),
-                                      )
-                                      .toList()
-                                  : List.empty(),
-                              viewMoreOnPressed: () {
-                                context.go(
-                                  '/home/week?name=${week.weekDescription}&number=${week.weekNumber}',
-                                );
-                              },
-                              parentRoute: '/home',
+            child: ListView(
+              children: [
+                Image.asset(
+                  AssetHelper.avengersCover,
+                  height: 200,
+                  width: size.width,
+                  fit: BoxFit.cover,
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                const HomeBrandList(),
+                const SizedBox(
+                  height: 16,
+                ),
+                if (state.weeks != null)
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: state.weeks?.length,
+                    itemBuilder: (context, index) {
+                      if (state.weeks != null) {
+                        final week = state.weeks![index];
+                        return ProductListHorizontal(
+                          title: week.weekDescription,
+                          products: week.weekProducts != null
+                              ? week.weekProducts!
+                                  .map(
+                                    (e) => ProductCompact(
+                                      id: e.productId,
+                                      imageURL: e.productImage,
+                                    ),
+                                  )
+                                  .toList()
+                              : List.empty(),
+                          viewMoreOnPressed: () {
+                            context.go(
+                              '/home/week?name=${week.weekDescription}&number=${week.weekNumber}',
                             );
-                          } else {
-                            return const SizedBox.shrink();
-                          }
-                        },
-                      ),
-                    ),
-                ],
-              ),
+                          },
+                          parentRoute: '/home',
+                        );
+                      } else {
+                        return const SizedBox.shrink();
+                      }
+                    },
+                  ),
+              ],
             ),
           ),
         );
