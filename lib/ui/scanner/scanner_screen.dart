@@ -95,6 +95,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
         context.go(
           '/scanner/product/$hashed',
         );
+        _isBusy = false;
       });
     } else {
       _isBusy = false;
